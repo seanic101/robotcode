@@ -67,14 +67,8 @@ class BeaverTronicsRobot(wpilib.IterativeRobot):
 
     def autonomousPeriodic(self):
         #old auto code could be used to cross baseline if we wire shit up correctly
-        '''if self.auto_loop_counter > 50:
-            if self.auto_loop_counter < 200:
-                self.setDriveMotors(1, -1)  # forward auto
-                  # turn auto
-                if self.auto_loop_counter < 300:
-                    self.setDriveMotors(1, 1)
-        self.auto_loop_counter += 1'''
-
+        if self.auto_loop_counter < 10:
+            self.setDriveMotors(1, -1)  # forward auto
     
 
 
@@ -120,7 +114,6 @@ class BeaverTronicsRobot(wpilib.IterativeRobot):
             self.setDriveMotors(self.leftspeeds, self.rightspeeds)
         
     def setDriveMotors(self, leftspeed, rightspeed):
-        if self.tankDriveReverse.get() and settings.MODE == "tank":
             for motor in self.right_motors:
                 motor.set(leftspeed*-1)
             for motor in self.left_motors:
